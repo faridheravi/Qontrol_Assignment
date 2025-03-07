@@ -143,3 +143,38 @@ The following figure shows the **non-convex workspace** of the UR5 robot, where 
 ## Conclusion
 By randomly sampling joint angles and checking the resulting end-effector positions, we have visualized the UR5 robot’s **non-convex workspace**. The UR5 does not have full reachability across its theoretical workspace due to joint constraints, leading to gaps in the reachable space. This experiment highlights the importance of understanding a robot’s kinematic limitations when designing robotic applications.
 
+---
+
+## Assignment 2 - part b: Force Capacity Polytope of a Panda Robot for Two Distinct Configurations
+
+## 2.2.1. Introduction
+To address **Assignment 2**: *"The Force Capacity Polytope of a Panda Robot for Two Distinct Configurations,"* I utilized the ROS package available at the following GitLab repository (I used Auctus gitlab repo):
+
+[GitLab Repository](https://gitlab.inria.fr/auctus-team/people/antunskuric/ros/ros_nodes/panda_capacity.git)
+
+I cloned the repository and followed the provided installation instructions.
+
+## 2.2.2. Launching the Package
+After successful installation, I was able to launch the package without issues. The following RViz output confirms proper functionality.
+
+## 2.2.3. Computing the Force Capacity in a Given Position
+To determine the force capacity at a specific position, I required a joint configuration to move the robot into the desired location. To achieve this, I implemented an **inverse kinematics (IK) solver** using **Pinocchio**. This solver helps in computing the joint positions required to reach the target pose.
+
+Similar to **Nonconvex**, I included the **URDF file** to determine joint limitations and evaluate the most optimal joint configuration for the robot.
+
+## 2.2.4. Moving the Robot to the Desired Position
+To position the robot accordingly, I initially used the **joint_state_publisher_gui** instead of **MoveIt**. While MoveIt is a robust motion planning framework, it is computationally expensive and takes a longer time. Therefore, for efficiency, I opted for the GUI-based method to move the robot and analyze its force capacity at the desired position.
+
+## 2.2.5. Results and Observations
+The attached images depict the **force capacity polytopes** in:
+![open arm position](images/force_distro2.png)
+![target position](images/force_dist.png)
+
+
+From the visualization, it is evident that in the **desired position, the force capacity distribution is reduced**. This indicates a **limitation in force exertion capability** due to the new configuration. Such observations highlight the importance of joint positioning in optimizing force distribution for robotic tasks.
+
+## 2.2.6. Conclusion
+The analysis of the force capacity polytope across different configurations demonstrates that the **robot's ability to apply force is significantly influenced by its joint positioning**. The results show that the force distribution is more constrained in the desired position compared to the normal position. This suggests that careful consideration is required when planning robot motions to ensure sufficient force application for task execution.
+
+Future work may involve leveraging **MoveIt for automated motion planning** while optimizing configurations to enhance force distribution capabilities.
+
